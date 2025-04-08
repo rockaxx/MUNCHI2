@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
-import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
-import HomePage from "@/pages/home";
+import IndexPage from "@/pages/Index";
+import DocsPage from "@/pages/Docs";
+import PricingPage from "@/pages/Pricing";
+import BlogPage from "@/pages/Blog";
+import AboutPage from "@/pages/About";
+import HomePage from "@/pages/Home";
+import RestaurantPage from "@/pages/Restaurants/Restaurants"
+
 function App() {
   return (
     <Routes>
@@ -15,6 +17,8 @@ function App() {
       <Route element={<BlogPage />} path="/blog" />
       <Route element={<AboutPage />} path="/about" />
       <Route element={<HomePage />} path="/" />
+      <Route element={<RestaurantPage />} path="/restaurants" />
+
     </Routes>
   );
 }
