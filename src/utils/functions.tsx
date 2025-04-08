@@ -1,4 +1,4 @@
-import { FoodItem, cartItem } from "../../types";
+import { FoodItem, cartItem } from "../types/types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
