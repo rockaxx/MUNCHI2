@@ -1,4 +1,4 @@
-import { auth, db } from '../Firebase/firebase.config';
+import { auth, db } from './firebase.config';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signOut,
+  UserCredential,
 } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
@@ -13,11 +14,11 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 // Create a new user using email and password, and create a Firestore document.
 export const doCreateUserWithEmailAndPassword = async (
-  email,
-  password,
-  phonePrefix,
-  phoneNumber
-) => {
+  email: string,
+  password: string,
+  phonePrefix: string,
+  phoneNumber: string
+): Promise<UserCredential> => {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const payload = {
     email,
@@ -29,7 +30,7 @@ export const doCreateUserWithEmailAndPassword = async (
 };
 
 // Create/sign in with Google and create a Firestore document.
-export const doCreateUserWithGoogle = async () => {
+export const doCreateUserWithGoogle = async (): Promise<UserCredential> => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
   const payload = {
@@ -42,7 +43,7 @@ export const doCreateUserWithGoogle = async () => {
 };
 
 // Create/sign in with Facebook and create a Firestore document.
-export const doCreateUserWithFacebook = async () => {
+export const doCreateUserWithFacebook = async (): Promise<UserCredential> => {
   const provider = new FacebookAuthProvider();
   const result = await signInWithPopup(auth, provider);
   const payload = {
@@ -57,20 +58,23 @@ export const doCreateUserWithFacebook = async () => {
 // ----- Login Functions -----
 
 // Log in an existing user using email and password.
-export const doLoginUserWithEmail = async (email, password) => {
+export const doLoginUserWithEmail = async (
+  email: string,
+  password: string
+): Promise<UserCredential> => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   return userCredential;
 };
 
 // Log in with Google without creating a new Firestore document.
-export const doLoginWithGoogle = async () => {
+export const doLoginWithGoogle = async (): Promise<UserCredential> => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
   return result;
 };
 
 // Log in with Facebook without creating a new Firestore document.
-export const doLoginWithFacebook = async () => {
+export const doLoginWithFacebook = async (): Promise<UserCredential> => {
   const provider = new FacebookAuthProvider();
   const result = await signInWithPopup(auth, provider);
   return result;
@@ -79,6 +83,6 @@ export const doLoginWithFacebook = async () => {
 // ----- Sign Out Function -----
 
 // Sign out the currently authenticated user.
-export const doSignOut = async () => {
+export const doSignOut = async (): Promise<void> => {
   await signOut(auth);
 };
