@@ -18,6 +18,7 @@ function App() {
       <Route element={<AboutPage />} path="/about" />
       <Route element={<HomePage />} path="/" />
       <Route element={<RestaurantPage />} path="/restaurants" />
+      {/* <Route element={<RestaurantPage />} path="/restaurants/:id" /> */}
 
     </Routes>
   );
