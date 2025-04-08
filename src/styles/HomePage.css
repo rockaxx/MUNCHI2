@@ -1,0 +1,578 @@
+/* ===== Basic resets / global styles ===== */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+    color: #292929;
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  /* Utility classes for mobile/desktop toggling */
+  .visible-mobile {
+    display: none;
+  }
+  .hidden-mobile {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .visible-mobile {
+      display: block !important;
+    }
+    .hidden-mobile {
+      display: none !important;
+    }
+  }
+  
+  @keyframes fadeDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  /* ====== APP WRAPPER ====== */
+  .app-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* ====== HEADER ====== */
+  .unified-header {
+    position: relative;  /* So wave can be absolutely pinned inside */
+    overflow: hidden;    /* Hide wave overflow */
+    background-color: #ffc244; /* Yellow color (overridden inline in component) */
+    /* Enough height to display the jumbotron content and wave at bottom */
+    min-height: 350px;
+  }
+  
+  .unified-header__color--yellow {
+    /* Optional: you can remove if background is set inline */
+  }
+  
+  .unified-header__desktop {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .unified-header-desktop__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  
+  /* Logo area */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .header-logo__balloon {
+    margin-right: 8px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .glovo-logo {
+    height: 20px;
+  }
+  
+  /* Right side: "Conectare" button */
+  .helio-button.login-button.pill {
+    background-color: #00a082;
+    border: none;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .helio-button.login-button.pill:hover {
+    background-color: #00846b;
+  }
+  
+  .login-button__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  
+  /* The jumbotron container inside the header */
+  .header-jumbotron-container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom:50px;
+  }
+  
+  .header-wave {
+    left: 0;
+    width: 100%;
+  }
+  
+  .header-wave svg {
+    display: block;
+    width: 100%;
+    height: 60px; /* or more if you want a deeper wave */
+    background-color: white;
+  }
+  
+  /* ====== MAIN CONTENT WRAPPER ====== */
+  .landing-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+  }
+  
+  .row-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ====== ADDRESS INPUT ====== */
+  .landing__address-input {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  
+  .address-input__container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .address-input__icon {
+    margin-right: 8px;
+  }
+  
+  .address-input__placeholder {
+    flex: 1;
+    color: #6e6e6e;
+  }
+  
+  .address-input__arrow {
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+  }
+  
+  .current-location {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: #00a082;
+    margin-left: 8px;
+  }
+  
+  .use-current-location--location-arrow {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+  
+  /* ====== HEADINGS INSIDE THE HEADER ====== */
+  .landing__city {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #292929;
+  }
+  
+  .title--inverted {
+    color: #292929;
+  }
+  
+  .title__city-name {
+    color: #292929;
+    font-size: 58px;
+    font-weight: 700;
+  
+  }
+  
+  /* ====== CATEGORY BUBBLES SECTION ====== */
+  .carousel__content {
+    padding: 20px 0;
+    background-color: #ffa31a;
+    /* Optional background color: */
+    /* background-color: #ffa31a; */
+  }
+  
+  .landing__categories {
+    display: flex;
+    flex-wrap: wrap;       /* wraps on smaller screens */
+    justify-content: center;
+    gap: 30px;             /* spacing between bubbles */
+  }
+  
+  /* Each bubble container */
+  .category-bubble__container {
+    text-align: center;
+    transition: transform 0.35s ease-in-out; /* Adjust duration and easing as needed */
+  
+    width: 100px;          /* adjust as needed for your layout */
+  }
+  
+  /* Link resets */
+  .category-bubble__link {
+    text-decoration: none;
+    color: #292929;        /* or inherit if you prefer */
+    cursor: pointer;
+    display: inline-block; /* so we can control width/height, etc. */
+  }
+  
+  /* The "organic" shadow shape behind the white circle */
+  .category-bubble__shadow {
+    position: relative;
+    width: 83px;
+    height:83px;
+    border-radius: 46% 54% 54% 46% / 58% 56% 44% 42%;
+    background: #2a231838; /* your orange-ish shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;        /* center in container */
+  }
+  
+  /* The white circle */
+  .category-bubble__blob {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;  
+    border-radius: 56% 44% 45% 55% / 58% 53% 47% 42%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover zoom effect */
+  .category-bubble__container:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Icon inside the white circle */
+  .category-bubble__data__img {
+    max-width: 48px;
+    max-height: 48px;
+    object-fit: contain;
+  }
+  
+  /* Category label below the bubble */
+  .category-bubble__title {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 800;  /* bold */
+    color: #292929;
+  }
+  
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .landing__categories {
+      gap: 20px;            /* slightly smaller gap on mobile */
+    }
+    .category-bubble__container {
+      width: 80px;          /* reduce bubble size if you want */
+    }
+    .category-bubble__shadow {
+      width: 80px;
+      height: 80px;
+    }
+    .category-bubble__blob {
+      width: 65px;
+      height: 65px;
+    }
+    .category-bubble__data__img {
+      max-width: 40px;
+      max-height: 40px;
+    }
+    .category-bubble__title {
+      font-size: 12px;
+    }
+  }
+  
+  
+  .category-bubble__line {
+    border: none;
+    border-top: 1px solid transparent;
+    margin: 8px auto 0;
+    width: 50%;
+  }
+  
+  /* ====== STORES GRID ====== */
+  .grid-widget__wrapper {
+    padding: 24px 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .grid-widget__header__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #292929;
+  }
+  
+  .grid-widget__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  
+  /* Single store card */
+  .store-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .store-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .store-card__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .store-card__image-container {
+    position: relative;
+    width: 100%;
+    height: 130px;
+    overflow: hidden;
+  }
+  
+  .store-card__image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .store-card__filter {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background-color: #00a082;
+    color: #fff;
+    font-size: 0.875rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .store-card-bottom {
+    padding: 12px;
+  }
+  
+  .store-card-bottom__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #292929;
+  }
+  
+  .store-card-bottom__rating {
+    font-size: 0.875rem;
+    color: #6e6e6e;
+  }
+  
+  /* ====== LANDING LINKS (Pizza, Grătar, etc.) ====== */
+  .landing-links.filter-links {
+    padding: 24px 16px;
+    text-align: center;
+  }
+  
+  .landing-links__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  
+  .landing-links__links-container a {
+    margin: 0 8px;
+    color: #00a082;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .landing-links__links-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ====== CORPORATE CONTAINER (Devino curier, etc.) ====== */
+  .corporate-container {
+    background-color: #292929; /* Dark grey background */
+    padding: 24px 16px;
+    text-align: center;
+  }
+  
+  .corporate-container__content {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 16px auto 0;
+  }
+  
+  .corporate-element {
+    background: #1b1b1b; /* Very dark grey for corporate card */
+    border-radius: 8px;
+    padding: 16px;
+    width: 280px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .corporate-element__top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .corporate-element__image {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .corporate-element__text h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffa31a; /* Accent for heading */
+  }
+  
+  .corporate-element__text div {
+    color: #ffffff; /* White text for description */
+  }
+  
+  .helio-button.primary {
+    display: inline-block;
+    background-color: #ffa31a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-top: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .helio-button.primary:hover {
+    background-color: #e09116;
+  }
+  
+  /* ====== FOOTER ====== */
+  .app-footer.hidden-mobile-when-search {
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 24px 16px;
+    margin-top: 40px;
+  }
+  
+  .app-footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-logo {
+    margin-bottom: 16px;
+  }
+  
+  .app-footer__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  
+  .footer-column {
+    min-width: 180px;
+  }
+  
+  .footer-column__title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  
+  .footer-column__link {
+    display: block;
+    color: #ccc;
+    margin-bottom: 4px;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  
+  .footer-column__link:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-column--with-download-buttons img {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  
+  .loader-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px; /* space above "Fetching your location..." text */
+  }
+  
+  .loader-dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: #00997A;
+    border-radius: 50%;
+    animation: bounce 0.6s infinite alternate;
+  }
+  
+  .loader-dots .dot:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes bounce {
+    to {
+      transform: translateY(-6px);
+    }
+  }
+  
+  
+  
